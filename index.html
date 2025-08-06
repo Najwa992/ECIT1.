@@ -1,9 +1,136 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>صفحة ECIT</title>
-  </head>
-  <body>
-    <h1>مرحباً بك في صفحة ECIT</h1>
-  </body>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>إضافة مشروع - ECIT</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f4f8;
+      direction: rtl;
+      text-align: right;
+      padding: 30px;
+    }
+
+    h2 {
+      color: #1b4f72;
+    }
+
+    form {
+      background-color: #ffffff;
+      padding: 25px;
+      border-radius: 12px;
+      max-width: 550px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.08);
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    button {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    .submit-btn {
+      background-color: #28a745; /* أخضر */
+      color: white;
+    }
+
+    .draft-btn {
+      background-color: #6c757d; /* رمادي */
+      color: white;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>نموذج إضافة مشروع - منصة استحواذ</h2>
+
+  <form id="projectForm" onsubmit="return validateForm()">
+    <label for="projectName">اسم المشروع:</label>
+    <input type="text" id="projectName" name="projectName">
+
+    <label for="description">وصف المشروع:</label>
+    <textarea id="description" name="description" rows="4"></textarea>
+
+    <label for="field">المجال:</label>
+    <select id="field" name="field">
+      <option value="">اختر المجال</option>
+      <option>تجارة إلكترونية</option>
+      <option>تقنية</option>
+      <option>صحي</option>
+      <option>تعليمي</option>
+    </select>
+
+    <label for="amount">المبلغ المطلوب (ريال):</label>
+    <input type="number" id="amount" name="amount">
+
+    <label for="file">رفع العرض التقديمي:</label>
+    <input type="file" id="file" name="file" accept=".pdf,.png,.jpg,.jpeg">
+
+    <div class="buttons">
+      <button type="button" class="draft-btn" onclick="saveDraft()">حفظ كمسودة</button>
+      <button type="submit" class="submit-btn">إرسال المشروع</button>
+    </div>
+
+    <p id="errorMsg" class="error"></p>
+  </form>
+
+  <script>
+    function validateForm() {
+      const name = document.getElementById('projectName').value;
+      const description = document.getElementById('description').value;
+      const field = document.getElementById('field').value;
+      const amount = document.getElementById('amount').value;
+
+      if (!name || !description || !field || !amount) {
+        document.getElementById('errorMsg').textContent = 'يرجى تعبئة جميع الحقول المطلوبة.';
+        return false;
+      }
+
+      alert('تم إرسال المشروع بنجاح!');
+      return true;
+    }
+
+    function saveDraft() {
+      alert('تم حفظ المشروع كمسودة (تنبيه تجريبي).');
+      // بإمكانك هنا حفظ البيانات مؤقتًا أو محليًا باستخدام localStorage
+    }
+  </script>
+
+</body>
 </html>
